@@ -191,6 +191,12 @@ pkgbuild --root ${BUILDPATH}/target_startup --identifier org.opensc-project.star
 # Build product
 productbuild --distribution MacOSX/Distribution.xml --package-path . --resources MacOSX/resources "${imagedir}/OpenSC @PACKAGE_VERSION@.pkg"
 
+# Sign installer
+if test -n "${INSTALLER_SIGN_IDENTITY}"; then
+	productsign --sign "${INSTALLER_SIGN_IDENTITY}" "${imagedir}/OpenSC @PACKAGE_VERSION@.pkg" "${BUILDPATH}/OpenSC @PACKAGE_VERSION@.pkg"
+	mv "${BUILDPATH}/OpenSC @PACKAGE_VERSION@.pkg" "${imagedir}/OpenSC @PACKAGE_VERSION@.pkg"
+fi
+
 # Build "Uninstaller"
 osacompile -o "${imagedir}/OpenSC Uninstaller.app" "MacOSX/OpenSC_Uninstaller.applescript"
 
