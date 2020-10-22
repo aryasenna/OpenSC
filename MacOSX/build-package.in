@@ -199,6 +199,9 @@ fi
 
 # Build "Uninstaller"
 osacompile -o "${imagedir}/OpenSC Uninstaller.app" "MacOSX/OpenSC_Uninstaller.applescript"
+if test -n "${CODE_SIGN_IDENTITY}"; then
+	codesign --force --verify --verbose --sign "${CODE_SIGN_IDENTITY}" "${imagedir}/OpenSC Uninstaller.app"
+fi
 
 # Create .dmg
 rm -f OpenSC-@PACKAGE_VERSION@.dmg
