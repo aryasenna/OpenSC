@@ -9,7 +9,7 @@ git clone --single-branch https://${GH_TOKEN}@github.com/OpenSC/Nightly.git > /d
 cd Nightly
 git checkout -b "${BRANCH}"
 
-if test -f *.dmg
+if test -f ${BUILDPATH}/*.dmg
 then
     git lfs install
     git lfs track "*.dmg"
