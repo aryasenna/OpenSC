@@ -9,12 +9,7 @@ git clone --single-branch https://${GH_TOKEN}@github.com/OpenSC/Nightly.git > /d
 cd Nightly
 git checkout -b "${BRANCH}"
 
-if test -f ${BUILDPATH}/*.dmg
-then
-    git lfs install
-    git lfs track "*.dmg"
-    git add .gitattributes
-fi
+git lfs install
 
 for file in ${BUILDPATH}/win32/Output/OpenSC*.exe ${BUILDPATH}/opensc*.tar.gz ${BUILDPATH}/OpenSC*.dmg ${BUILDPATH}/OpenSC*.msi ${BUILDPATH}/OpenSC*.zip
 do
