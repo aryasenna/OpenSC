@@ -215,3 +215,7 @@ do
 	fi
 done
 rm -rf ${imagedir}
+
+if test -n "${CODE_SIGN_IDENTITY}"; then
+	codesign --force --deep -s "${CODE_SIGN_IDENTITY}" -v --timestamp --options runtime OpenSC-@PACKAGE_VERSION@.dmg
+fi
