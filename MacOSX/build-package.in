@@ -219,3 +219,6 @@ rm -rf ${imagedir}
 if test -n "${CODE_SIGN_IDENTITY}"; then
 	codesign --force --deep -s "${CODE_SIGN_IDENTITY}" -v --timestamp --options runtime OpenSC-@PACKAGE_VERSION@.dmg
 fi
+
+#if [ "$TRAVIS_EVENT_TYPE" != "pull_request" ]; then xcrun altool --notarize-app --file $(pwd)/vorteil_darwin-x86.dmg --username $OSX_NOTARIZE_USERNAME --primary-bundle-id com.vorteil.cli -p $OSX_NOTARIZE_PW -- >> /dev/null; fi;
+#if [ "$TRAVIS_EVENT_TYPE" != "pull_request" ]; then for ((i=1;i<=30;i+=1)); do xcrun stapler staple $(pwd)/vorteil_darwin-x86.dmg >> /dev/null; if [ $? = 65 ]; then echo "Waiting for notarization to complete..." && sleep 10; fi; done; fi;
