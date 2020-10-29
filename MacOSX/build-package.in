@@ -176,6 +176,7 @@ if test -e OpenSCToken -a -n "${CODE_SIGN_IDENTITY}"; then
 	xcodebuild -target OpenSCTokenApp -configuration Debug -project OpenSCTokenApp.xcodeproj install DSTROOT=${BUILDPATH}/target_token "$P1" "$P2" "$P3" "$P4" "$P5"
 	mkdir ${BUILDPATH}/target_token/Applications/Utilities
 	mv ${BUILDPATH}/target_token/Applications/OpenSCTokenApp.app ${BUILDPATH}/target_token/Applications/Utilities
+	cp -r ${BUILDPATH}/target_token/Applications/Utilities/OpenSCTokenApp.app ${imagedir}
 	cd ..
 else
 	# if no OpenSCToken is checked out, then we create a dummy package
